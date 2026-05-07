@@ -30,6 +30,12 @@ resource "aws_instance" "tp3-2484435-multi-service" {
 
   key_name = aws_key_pair.tp3_key.key_name
 
+  root_block_device {
+    volume_size           = 30      # Spécifie la taille désirée en Go
+    volume_type           = "gp3"   # gp3 est recommandé (meilleures performances/prix que gp2)
+    delete_on_termination = true    # Le disque sera détruit en même temps que l'instance
+  }
+
   tags = {
     Name = "tp3-2484435-multi-service"
   }
